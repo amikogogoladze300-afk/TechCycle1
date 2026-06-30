@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block title %}ტექნიკის ჩაბარება | TechCycle{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row g-4 justify-content-center align-items-stretch">
+        
+        <!-- მარცხენა სვეტი: საინფორმაციო ბლოკი (Premium Banner) -->
+        <div class="col-lg-5 d-flex">
+            <div class="card border-0 rounded-4 shadow-sm text-white p-5 w-100 d-flex flex-column justify-content-between" 
+                 style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);">
+                <div>
+                    <span class="badge bg-primary rounded-pill mb-3 px-3 py-2 fw-semibold">TECH CYCLE TRADE-IN</span>
+                    <h2 class="display-6 fw-extrabold mb-3">მიეცი შენს ტექნიკას მეორე შანსი!</h2>
+                    <p class="text-white-50 lead mb-4">შეავსე ფორმა, განათავსე შენი ძველი მოწყობილობა კატალოგში და დაეხმარე გარემოს ელექტრონული ნარჩენების შემცირებაში.</p>
+                </div>
+                
+                <!-- უპირატესობების პატარა სიები -->
+                <div class="pt-4 border-top border-secondary d-grid gap-3">
+                    <div class="d-flex align-items-center">
+                        <div class="bg-primary rounded-circle p-2 d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                            <i class="bi bi-wallet2 fs-5"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-0 fw-bold">სწრაფი გაყიდვა</h6>
+                            <small class="text-white-50">ათასობით აქტიური მყიდველი ყოველდღიურად</small>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <div class="bg-primary rounded-circle p-2 d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                            <i class="bi bi-shield-check fs-5"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-0 fw-bold">უსაფრთხო პლატფორმა</h6>
+                            <small class="text-white-50">შენი მონაცემები სრულად დაცულია</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- მარჯვენა სვეტი: თანამედროვე ფორმა -->
+        <div class="col-lg-6">
+            <div class="card border-0 rounded-4 shadow p-4 p-md-5 bg-white h-100">
+                <h3 class="fw-bold text-dark mb-1">მოწყობილობის დეტალები</h3>
+                <p class="text-muted small mb-4">გთხოვთ, ზუსტად მიუთითოთ ტექნიკური მახასიათებლები</p>
+                
+                <form method="POST">
+                    {{ form.hidden_tag() }}
+                    
+                    <!-- 1. დასახელება და ფასი ერთ ხაზზე -->
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-8">
+                            <label class="form-label small fw-semibold text-secondary">პროდუქტის დასახელება</label>
+                            {{ form.title(class="form-control rounded-pill py-2 px-3", placeholder="მაგ: iPhone 13 Pro Max") }}
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label small fw-semibold text-secondary">ფასი (₾)</label>
+                            {{ form.price(class="form-control rounded-pill py-2 px-3", placeholder="1500") }}
+                        </div>
+                    </div>
+
+                    <!-- 2. მდგომარეობის არჩევა -->
+                    <div class="mb-3">
+                        <label class="form-label small fw-semibold text-secondary">ვიზუალური მდგომარეობა</label>
+                        {{ form.condition(class="form-select rounded-pill py-2 px-3") }}
+                    </div>
+
+                    <!-- 3. სურათის URL -->
+                    <div class="mb-4">
+                        <label class="form-label small fw-semibold text-secondary">სურათის ბმული (Image URL)</label>
+                        <div class="input-group">
+                            <span class="input-group-text rounded-start-pill bg-light border-end-0 px-3 text-muted"><i class="bi bi-link-45deg"></i></span>
+                            {{ form.image_url(class="form-control rounded-end-pill py-2 border-start-0", placeholder="https://example.com/image.jpg") }}
+                        </div>
+                    </div>
+
+                    <!-- ტექნიკური ბლოკის გამყოფი -->
+                    <div class="d-flex align-items-center my-4">
+                        <hr class="flex-grow-1 my-0 text-muted opacity-25">
+                        <span class="mx-3 text-uppercase font-sm tracking-wider fw-bold text-muted" style="font-size: 11px; letter-spacing: 1px;">სპეციფიკაციები (არასავალდებულო)</span>
+                        <hr class="flex-grow-1 my-0 text-muted opacity-25">
+                    </div>
+
+                    <!-- 4. ოპერაციული სისტემა და ეკრანი -->
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label small fw-semibold text-secondary">ოპერაციული სისტემა</label>
+                            {{ form.os(class="form-control rounded-pill py-2 px-3", placeholder="მაგ: iOS 17 ან Windows 11") }}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small fw-semibold text-secondary">ეკრანის ზომა / ტიპი</label>
+                            {{ form.display(class="form-control rounded-pill py-2 px-3", placeholder="მაგ: 6.7\" Super Retina") }}
+                        </div>
+                    </div>
+
+                    <!-- 5. კამერა ან სხვა მახასიათებელი -->
+                    <div class="mb-4">
+                        <label class="form-label small fw-semibold text-secondary">კამერა ან დამატებითი დეტალი</label>
+                        {{ form.camera(class="form-control rounded-pill py-2 px-3", placeholder="მაგ: 3X ოპტიკური ზუმი, 48MP ან 16GB RAM") }}
+                    </div>
+
+                    <!-- სუბმიტ ღილაკი -->
+                    <div class="d-grid mt-4">
+                        {{ form.submit(class="btn btn-primary rounded-pill btn-lg py-2 fs-6 fw-semibold shadow-sm") }}
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

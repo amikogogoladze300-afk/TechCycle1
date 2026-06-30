@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ product.title }} | TechCycle{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row g-4 justify-content-center">
+        
+        <!-- მარცხენა სვეტი: სურათი და მახასიათებლები -->
+        <div class="col-lg-6">
+            <div class="card border-0 rounded-4 shadow-sm p-4 bg-white text-center">
+                <div class="main-image-wrapper p-4 d-flex align-items-center justify-content-center" style="min-height: 350px;">
+                    <img src="{{ product.image_url }}" alt="{{ product.title }}" class="img-fluid object-fit-contain" style="max-height: 320px;">
+                </div>
+                
+                <!-- ტექნიკური მახასიათებლების ცხრილი (Grid) -->
+                <div class="row g-2 mt-4 text-start">
+                    <div class="col-4">
+                        <div class="bg-light p-3 rounded-3 text-center border">
+                            <small class="text-muted d-block mb-1">სისტემა</small>
+                            <span class="fw-bold small text-dark">{{ product.os }}</span>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="bg-light p-3 rounded-3 text-center border">
+                            <small class="text-muted d-block mb-1">ეკრანი</small>
+                            <span class="fw-bold small text-dark">{{ product.display }}</span>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="bg-light p-3 rounded-3 text-center border">
+                            <small class="text-muted d-block mb-1">კამერა</small>
+                            <span class="fw-bold small text-dark">{{ product.camera }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- მარჯვენა სვეტი: ფასი და ყიდვა -->
+        <div class="col-lg-5">
+            <div class="card border-0 rounded-4 shadow-sm p-4 bg-white h-100 d-flex flex-column">
+                <span class="badge bg-primary-subtle text-primary rounded-pill align-self-start px-3 py-2 fw-bold mb-3">
+                    <i class="bi bi-shield-check me-1"></i> მდგომარეობა: {{ product.condition }}
+                </span>
+                
+                <h1 class="fw-extrabold text-dark mb-2 fs-2">{{ product.title }}</h1>
+                <p class="text-muted small mb-4">კოდი: TC-{{ product.id }}09</p>
+
+                <!-- ფასის ბლოკი -->
+                <div class="p-3 bg-light rounded-4 mb-4 border d-flex justify-content-between align-items-center">
+                    <div>
+                        <small class="text-muted d-block">ღირებულება</small>
+                        <span class="display-5 fw-black text-primary">₾{{ product.price }}</span>
+                    </div>
+                    <span class="text-success fw-semibold small"><i class="bi bi-check-circle-fill"></i> მარაგშია</span>
+                </div>
+
+                <!-- მარაზიის უპირატესობები -->
+                <div class="mb-4 text-secondary small d-grid gap-2">
+                    <div class="d-flex align-items-center"><i class="bi bi-truck text-primary me-2 fs-5"></i> უფასო მიწოდება მთელ საქართველოში</div>
+                    <div class="d-flex align-items-center"><i class="bi bi-patch-check text-primary me-2 fs-5"></i> 1 წლიანი ოფიციალური გარანტია</div>
+                    <div class="d-flex align-items-center"><i class="bi bi-arrow-counterclockwise text-primary me-2 fs-5"></i> 14 დღიანი უკან დაბრუნების პირობა</div>
+                </div>
+
+                <!-- ყიდვის ღილაკები -->
+                <div class="d-grid gap-2 mt-auto">
+                    <button class="btn btn-primary btn-lg rounded-pill fw-bold py-3 shadow-sm" onclick="alert('მადლობა ყიდვისთვის!')">
+                        <i class="bi bi-lightning-fill me-1"></i> მომენტალური ყიდვა
+                    </button>
+                    <button class="btn btn-outline-dark btn-lg rounded-pill fw-bold py-3">
+                        <i class="bi bi-cart-plus me-1"></i> კალათში დამატება
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
