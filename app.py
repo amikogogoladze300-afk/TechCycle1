@@ -9,7 +9,8 @@ from wtforms.validators import DataRequired, Email, EqualTo, Length
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_super_secret_key_here'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///techcycle.db'
+basedir = os.path.abspath(os.path.dirname(__file__))
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'techcycle.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
