@@ -111,7 +111,7 @@ def index():
     products = Product.query.all()
     return render_template('index.html', products=products)
 
-@app.route('/product/<int=product_id>')
+
 @app.route('/product/<int:product_id>')
 def product_detail(product_id):
     product = Product.query.get_or_404(product_id)
