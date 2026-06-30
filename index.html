@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!-- სარეკლამო ბანერი (Zoommer / Gstore სტილის სლაიდერი) -->
+    <div class="container mt-4">
+        <div id="promoSlider" class="carousel slide shadow-sm rounded-4 overflow-hidden" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active bg-gradient-dark p-5 text-white" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); min-height: 320px;">
+                    <div class="row align-items-center h-100 p-lg-4">
+                        <div class="col-md-7">
+                            <span class="badge bg-primary rounded-pill mb-3 px-3 py-2 fw-semibold">HOT DEAL</span>
+                            <h1 class="display-5 fw-extrabold text-white mb-3">განახლებული iPhone-ები 1 წლიანი გარანტიით</h1>
+                            <p class="lead text-white-50 mb-4">დაზოგე 40%-მდე და მიიღე სრულიად ახალივით მდგომარეობაში.</p>
+                            <a href="#catalog" class="btn btn-primary btn-lg rounded-pill px-4 shadow">იხილე კატალოგი</a>
+                        </div>
+                        <div class="col-md-5 text-center d-none d-md-block">
+                            <i class="bi bi-phone text-primary" style="font-size: 10rem; opacity: 0.8;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- კატალოგის სექცია -->
+    <div id="catalog" class="container my-5">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 pb-3 border-bottom">
+            <div>
+                <h2 class="fw-bold text-dark mb-1">🔥 პოპულარული მოდელები</h2>
+                <p class="text-muted small mb-0">საუკეთესო შემოთავაზებები შენთვის</p>
+            </div>
+            <!-- სწრაფი ფილტრები (კატეგორიის ჩანართები) -->
+            <div class="d-flex gap-2 mt-3 mt-md-0 overflow-x-auto pb-2">
+                <button class="btn btn-dark rounded-pill px-3 py-1 btn-sm">ყველა</button>
+                <button class="btn btn-outline-secondary rounded-pill px-3 py-1 btn-sm">სმარტფონები</button>
+                <button class="btn btn-outline-secondary rounded-pill px-3 py-1 btn-sm">ლეპტოპები</button>
+            </div>
+        </div>
+        
+        <!-- პროდუქტების ბადე (Grid) -->
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+            {% if products %}
+                {% for product in products %}
+                    <div class="col">
+                        <div class="card h-100 border-0 rounded-4 shadow-sm product-card position-relative overflow-hidden bg-white p-3">
+                            <!-- მდგომარეობის ბეჯი -->
+                            <span class="position-absolute top-0 start-0 m-3 badge bg-light text-success border border-success-subtle rounded-pill px-3 py-2 fw-bold font-sm">
+                                {{ product.condition }}
+                            </span>
+                            
+                            <!-- პროდუქტის სურათი -->
+                            <div class="p-3 text-center d-flex align-items-center justify-content-center" style="height: 180px;">
+                                <img src="{{ product.image_url }}" alt="{{ product.title }}" class="img-fluid object-fit-contain" style="max-height: 100%;">
+                            </div>
+                            
+                            <!-- პროდუქტის ინფორმაცია -->
+                            <div class="card-body p-2 d-flex flex-column">
+                                <h6 class="card-title fw-bold text-dark text-truncate mb-2" title="{{ product.title }}">
+                                    {{ product.title }}
+                                </h6>
+                                <div class="fs-4 fw-extrabold text-primary mb-3">₾{{ product.price }}</div>
+                                
+                                <!-- მოქმედების ღილაკები -->
+                                <div class="d-flex gap-2 mt-auto">
+                                    <a href="{{ url_for('product_detail', product_id=product.id) }}" class="btn btn-primary rounded-pill w-100 fw-semibold py-2">
+                                        ნახვა
+                                    </a>
+                                    {% if current_user.is_authenticated and current_user.is_admin %}
+                                        <a href="{{ url_for('delete_product', product_id=product.id) }}" class="btn btn-outline-danger rounded-circle p-2 px-3 d-flex align-items-center justify-content-center" title="წაშლა">
+                                            <i class="bi bi-trash3-fill"></i>
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-12 text-center py-5">
+                    <i class="bi bi-box-seam text-muted display-1"></i>
+                    <p class="text-muted mt-3 fs-5">კატალოგი ამჟამად ცარიელია.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

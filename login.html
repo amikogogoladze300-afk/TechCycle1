@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5 col-lg-4">
+            <div class="card border-0 rounded-4 shadow p-4 bg-white">
+                <h3 class="fw-bold text-center text-dark mb-4">სისტემაში შესვლა</h3>
+                <form method="POST">
+                    {{ form.hidden_tag() }}
+                    <div class="mb-3">
+                        {{ form.email(class="form-control rounded-pill py-2 px-3", placeholder="ელ-ფოსტა") }}
+                    </div>
+                    <div class="mb-4">
+                        {{ form.password(class="form-control rounded-pill py-2 px-3", placeholder="პაროლი") }}
+                    </div>
+                    {{ form.submit(class="btn btn-primary rounded-pill w-100 py-2 fw-semibold shadow-sm") }}
+                </form>
+                <div class="text-center mt-3 small">
+                    არ გაქვს ანგარიში? <a href="{{ url_for('register') }}" class="text-primary fw-medium text-decoration-none">დარეგისტრირდი</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

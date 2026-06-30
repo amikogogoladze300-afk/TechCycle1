@@ -1,0 +1,50 @@
+/* Custom Variable Overrides & Core Adjustments */
+:root {
+    --bs-primary: #2563eb;       /* Royal Blue */
+    --bs-primary-hover: #1d4ed8;
+    --bs-dark: #0f172a;          /* Premium Slate */
+}
+
+body {
+    font-family: 'Inter', sans-serif !important;
+    background-color: #f4f6f9 !important;
+    color: #1e293b;
+}
+
+.fw-extrabold { font-weight: 800; }
+.fw-black { font-weight: 900; }
+
+/* ანიმაცია პროდუქტის ბარათებზე (Zoommer-ის მსგავსი Soft Effect) */
+.product-card {
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease;
+    border: 1px solid #e2e8f0 !important;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(15, 23, 42, 0.08) !important;
+    border-color: #2563eb !important;
+}
+
+.product-card img {
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover img {
+    transform: scale(1.04);
+}
+
+/* მრგვალი ფორმები */
+.form-control:focus {
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 0.25rem rgba(37, 99, 235, 0.15);
+}
+
+/* ჰორიზონტალური სკროლი ფილტრებისთვის მობილურზე */
+.overflow-x-auto::-webkit-scrollbar {
+    height: 4px;
+}
+.overflow-x-auto::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 10px;
+}
